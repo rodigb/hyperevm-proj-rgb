@@ -1,5 +1,6 @@
 "use client";
 
+import HyperEVMStatusIcon from "@/pages/home/components/HyperEVMStatusIcon";
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 
 const navItems = [
@@ -18,18 +19,8 @@ export default function Navbar() {
         borderBottom: "1px solid rgba(0,0,0,0.08)",
       }}
     >
-      <Toolbar sx={{ maxWidth: 1100, width: "100%", mx: "auto" }}>
-        <Typography
-          variant="h6"
-          sx={{ fontWeight: 700, flexGrow: 1, textDecoration: "none" }}
-          component="a"
-          href="/"
-          color="text.primary"
-        >
-          HyperEVM Dashboard
-        </Typography>
-
-        <Box sx={{ display: "flex", gap: 1 }}>
+      <Toolbar sx={{ width: "100%", mx: "auto" }}>
+        <Box sx={{ display: "flex", gap: 1, ml: 3 }}>
           {navItems.map((item) => (
             <Button
               key={item.href}
@@ -40,6 +31,10 @@ export default function Navbar() {
             </Button>
           ))}
         </Box>
+
+        <Box sx={{ flexGrow: 1 }} />
+
+        <HyperEVMStatusIcon />
       </Toolbar>
     </AppBar>
   );
