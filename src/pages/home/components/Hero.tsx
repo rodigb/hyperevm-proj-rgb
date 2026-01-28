@@ -1,6 +1,7 @@
 import { Box, Card, CardContent, Stack, Typography } from "@mui/material";
+import MarketPulseCard from "./MarketPulseCard";
 
-export default function Hero() {
+export default async function Hero() {
   return (
     <Card sx={{ position: "relative", overflow: "hidden" }}>
       <Box
