@@ -3,7 +3,7 @@
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import LinkBehavior from "./components/LinkBehaviour";
+import LinkBehavior from "../components/LinkBehaviour";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 
 const theme = createTheme({
@@ -16,11 +16,11 @@ const theme = createTheme({
     },
 
     primary: {
-      main: "#25E6D5", // Hyperliquid cyan
+      main: "#25E6D5",
     },
 
     secondary: {
-      main: "#7C5CFF", // purple tint
+      main: "#7C5CFF",
     },
 
     text: {
@@ -31,9 +31,7 @@ const theme = createTheme({
     divider: "rgba(255,255,255,0.08)",
   },
 
-  shape: {
-    borderRadius: 14,
-  },
+  shape: {},
 
   typography: {
     fontFamily: [
@@ -88,14 +86,6 @@ const theme = createTheme({
           background: "rgba(13,18,32,0.9)",
           backdropFilter: "blur(12px)",
           borderBottom: "1px solid rgba(255,255,255,0.08)",
-        },
-      },
-    },
-
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          borderRadius: 12,
         },
       },
     },

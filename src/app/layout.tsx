@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { Container } from "@mui/material";
-import Navbar from "./components/Navbar";
+import Navbar from "../components/Navbar";
 import Providers from "./providers";
 
 export const metadata: Metadata = {
