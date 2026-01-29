@@ -1,5 +1,4 @@
 import { Box, Card, CardContent, Stack, Typography } from "@mui/material";
-import MarketPulseCard from "./MarketPulseCard";
 
 export default async function Hero() {
   return (

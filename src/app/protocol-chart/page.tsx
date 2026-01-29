@@ -1,10 +1,10 @@
 import { Box, Card, CardContent, Container, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { getProtocolTvlSeries } from "@/lib/defillama/marketSeries";
-import MiniMarketCard from "@/pages/home/components/charts/MiniMarketCard";
 import ProtocolChartClient from "./ProtocolChartClient";
 import { getProtocols } from "@/lib/defillama/protocols";
 import ProtocolInformation from "./ProtocolInformation";
+import MiniMarketCard from "../home-page/charts/MiniMarketCard";
 
 type ProtocolOption = { name: string; slug: string; tvl?: number };
 
@@ -90,6 +90,7 @@ export default async function ProtocolChartPage({
                 changePct={hyperLiquidSeries?.changePct ?? null}
                 sparkline={hyperLiquidSeries?.sparkline ?? []}
                 timeframeLabel="30d"
+                compareProperty={true}
               />
             </Grid>
 
@@ -103,6 +104,7 @@ export default async function ProtocolChartPage({
                   changePct={series?.changePct ?? null}
                   sparkline={series?.sparkline ?? []}
                   timeframeLabel="30d"
+                  compareProperty={true}
                 />
               ) : (
                 <Card sx={{ borderRadius: 4, width: "100%", height: "100%" }}>

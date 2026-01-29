@@ -39,9 +39,10 @@ export default function Sparkline({
   return (
     <Box
       sx={{
-        width,
-        height,
+        width: "100%",
+        height: "100%",
         opacity: 0.95,
+        p: 1,
       }}
     >
       <svg

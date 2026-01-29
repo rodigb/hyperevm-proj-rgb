@@ -10,34 +10,6 @@ function formatBlock(n: number) {
   return n.toLocaleString("en-GB");
 }
 
-const CACHE_KEY = "hyperevm_rpc_health_v1";
-
-type CachedHealth = {
-  status: RpcStatus; // "online" | "offline"
-  blockNumber: number | null;
-  checkedAt: number; // epoch ms
-};
-
-function readCache(): CachedHealth | null {
-  try {
-    const raw = localStorage.getItem(CACHE_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw) as CachedHealth;
-    if (!parsed || typeof parsed.checkedAt !== "number") return null;
-    return parsed;
-  } catch {
-    return null;
-  }
-}
-
-function writeCache(value: CachedHealth) {
-  try {
-    localStorage.setItem(CACHE_KEY, JSON.stringify(value));
-  } catch {
-    // ignore (private mode, quota, etc.)
-  }
-}
-
 export default function HyperEVMStatusIcon({
   pollMs = 1 * 60 * 1000,
   timeoutMs = 2_500,
@@ -60,13 +32,9 @@ export default function HyperEVMStatusIcon({
       if (!mounted) return;
       setStatus(nextStatus);
       setBlockNumber(nextBlock);
-      if (nextStatus !== "checking") {
-        writeCache({ status: nextStatus, blockNumber: nextBlock, checkedAt });
-      }
     };
 
     const check = async () => {
-      // Optional: don’t poll in background tabs
       if (document.hidden) return;
 
       const checkedAt = Date.now();
@@ -78,20 +46,6 @@ export default function HyperEVMStatusIcon({
       else apply("offline", null, checkedAt);
     };
 
-    // 1) Try cache first — prevents pinging on refresh
-    const cached = readCache();
-    const now = Date.now();
-
-    if (cached && now - cached.checkedAt < pollMs) {
-      // Cache is still fresh: use it and skip initial ping
-      setStatus(cached.status);
-      setBlockNumber(cached.blockNumber);
-    } else {
-      // No fresh cache: do one check
-      check();
-    }
-
-    // 2) Poll on an interval (optional, but now it’s infrequent)
     const id = window.setInterval(check, pollMs);
 
     return () => {

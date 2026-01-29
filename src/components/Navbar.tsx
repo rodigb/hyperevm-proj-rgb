@@ -1,6 +1,6 @@
 "use client";
 
-import HyperEVMStatusIcon from "@/pages/home/components/HyperEVMStatusIcon";
+import HyperEVMStatusIcon from "@/app/home-page/components/HyperEVMStatusIcon";
 import { AppBar, Toolbar, Button, Box } from "@mui/material";
 
 const navItems = [

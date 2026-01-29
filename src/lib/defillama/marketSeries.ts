@@ -26,7 +26,8 @@ export async function getProtocolTvlSeries(opts: {
   const url = `${BASE}/protocol/${encodeURIComponent(opts.protocolSlug)}`;
 
   const res = await fetch(url, {
-    next: { revalidate: 300 }, // cache 5 minutes server-side
+    // next: { revalidate: 300 }, // cache 5 minutes server-side
+    cache: "no-store",
     headers: {
       // helps avoid odd non-json responses sometimes
       "accept": "application/json",

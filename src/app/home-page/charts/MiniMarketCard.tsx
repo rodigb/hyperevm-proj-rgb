@@ -13,27 +13,10 @@ import {
 import Sparkline from "./SparkLine";
 import ProtocolInformation from "@/app/protocol-chart/ProtocolInformation";
 
-type Source = string;
-
 function formatUsd(n: number) {
   return n >= 1000
     ? `$${n.toLocaleString("en-GB", { maximumFractionDigits: 0 })}`
     : `$${n.toFixed(2)}`;
-}
-
-function sourceBadge(source: Source) {
-  if (source === "hyperliquid") {
-    return {
-      label: "Hyperliquid",
-      bg: "rgba(124,92,255,0.14)",
-      border: "rgba(124,92,255,0.30)",
-    };
-  }
-  return {
-    label: "Binance",
-    bg: "rgba(37,230,213,0.10)",
-    border: "rgba(37,230,213,0.25)",
-  };
 }
 
 export default function MiniMarketCard({
@@ -43,6 +26,7 @@ export default function MiniMarketCard({
   changePct,
   sparkline,
   timeframeLabel = "30d",
+  compareProperty = false,
 }: {
   source: string;
   title: string;
@@ -50,9 +34,8 @@ export default function MiniMarketCard({
   changePct: number | null;
   sparkline: number[];
   timeframeLabel?: string;
+  compareProperty: boolean;
 }) {
-  const badge = sourceBadge(source);
-
   const changeChip =
     changePct == null ? null : (
       <Chip
@@ -74,7 +57,6 @@ export default function MiniMarketCard({
     <>
       <Card
         sx={{
-          borderRadius: 4,
           width: "100%",
           height: "100%",
           display: "flex",
@@ -82,25 +64,14 @@ export default function MiniMarketCard({
           justifyContent: "space-between",
         }}
       >
-        <CardContent sx={{ p: 2.25 }}>
-          <Stack spacing={1.25}>
+        <CardContent>
+          <Stack>
             <Stack
               direction="row"
               alignItems="center"
               justifyContent="space-between"
-              gap={1.5}
             >
               <Stack direction="row" spacing={1} alignItems="center">
-                <Chip
-                  size="small"
-                  label={badge.label}
-                  sx={{
-                    borderRadius: 999,
-                    bgcolor: badge.bg,
-                    border: `1px solid ${badge.border}`,
-                    color: "text.primary",
-                  }}
-                />
                 <Typography variant="body2" color="text.secondary">
                   {title}
                 </Typography>
@@ -113,7 +84,6 @@ export default function MiniMarketCard({
               direction="row"
               alignItems="baseline"
               justifyContent="space-between"
-              gap={2}
             >
               <Typography
                 sx={{ fontSize: 26, fontWeight: 800, letterSpacing: "-0.02em" }}
@@ -144,7 +114,7 @@ export default function MiniMarketCard({
           </Stack>
         </CardContent>
         <Divider />
-        <ProtocolInformation />
+        {compareProperty && <ProtocolInformation />}
       </Card>
     </>
   );
