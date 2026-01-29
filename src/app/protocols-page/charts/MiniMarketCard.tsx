@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import {
   Box,
   Card,
@@ -27,6 +28,7 @@ export default function MiniMarketCard({
   sparkline,
   timeframeLabel = "30d",
   compareProperty = false,
+  imageURL,
 }: {
   source: string;
   title: string;
@@ -35,6 +37,7 @@ export default function MiniMarketCard({
   sparkline: number[];
   timeframeLabel?: string;
   compareProperty: boolean;
+  imageURL?: string;
 }) {
   const changeChip =
     changePct == null ? null : (
@@ -52,6 +55,8 @@ export default function MiniMarketCard({
         }}
       />
     );
+
+  const logoSrc = imageURL ?? "/placeholder-logo.png";
 
   return (
     <>
@@ -71,6 +76,7 @@ export default function MiniMarketCard({
               alignItems="center"
               justifyContent="space-between"
             >
+              <Image src={logoSrc} alt={source} width={24} height={24} />
               <Stack direction="row" spacing={1} alignItems="center">
                 <Typography variant="body2" color="text.secondary">
                   {title}

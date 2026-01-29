@@ -1,16 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import HyperEVMStatusIcon from "@/app/home-page/components/HyperEVMStatusIcon";
+import HyperEVMStatusIcon from "@/app/protocols-page/components/HyperEVMStatusIcon";
 import {
   Drawer,
   Box,
   Divider,
   Toolbar,
-  Typography,
   List,
   ListItemButton,
   ListItemIcon,
@@ -21,12 +19,13 @@ import HomeIcon from "@mui/icons-material/Home";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import AutoGraphIcon from "@mui/icons-material/AutoGraph";
+import AppIcon from "./AppIcon";
 
 const drawerWidth = 260;
 
 const navItems = [
   { href: "/", label: "Overview", icon: HomeIcon },
-  { href: "/protocols", label: "Protocols", icon: CheckBoxIcon },
+  { href: "/protocols-page", label: "Protocols", icon: CheckBoxIcon },
   { href: "/yields", label: "Yields", icon: AutoGraphIcon },
   { href: "/compare", label: "Compare TVL", icon: InsertChartIcon },
 ];
@@ -52,35 +51,7 @@ export default function Sidebar() {
 
       <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
         <Box sx={{ px: 2.5, pt: 2.5, pb: 2 }}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Image
-              src="/robot.gif"
-              alt="HyperEVM Logo"
-              width={80}
-              height={80}
-            />
-            <Typography
-              sx={{
-                mt: 1,
-                fontSize: 20,
-                fontWeight: 800,
-                letterSpacing: 0.2,
-              }}
-            >
-              <span style={{ color: "#50d2c1" }}>Hyper</span>Board
-            </Typography>
-            <Typography
-              sx={{ mt: 0.5, fontSize: 12, color: "rgba(255,255,255,0.55)" }}
-            >
-              Dashboard
-            </Typography>
-          </Box>
+          <AppIcon />
         </Box>
 
         <Divider sx={{ borderColor: "rgba(255,255,255,0.08)" }} />

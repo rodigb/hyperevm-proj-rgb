@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import { getProtocolTvlSeries } from "@/lib/defillama/marketSeries";
 import ProtocolChartClient from "./ProtocolChartClient";
 import { getProtocols } from "@/lib/defillama/protocols";
-import MiniMarketCard from "../home-page/charts/MiniMarketCard";
+import MiniMarketCard from "../protocols-page/charts/MiniMarketCard";
 
 type ProtocolOption = { name: string; slug: string; tvl?: number };
 
@@ -25,14 +25,13 @@ export default async function ProtocolChartPage({
     .sort((a, b) => (b.tvl ?? 0) - (a.tvl ?? 0))
     .slice(0, 1000);
 
-  console.log(protocols);
   const series =
     protocol.length > 0
       ? await getProtocolTvlSeries({ protocolSlug: protocol, points: 30 })
       : null;
 
   const hyperLiquidSeries = await getProtocolTvlSeries({
-    protocolSlug: "hyperliquid",
+    protocolSlug: "HyperLiquid L1",
     points: 30,
   });
 

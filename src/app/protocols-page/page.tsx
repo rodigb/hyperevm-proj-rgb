@@ -2,32 +2,27 @@ import { Box } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Hero from "./components/Hero";
 import { getProtocolTvlSeries } from "@/lib/defillama/marketSeries";
-import { getProtocols } from "@/lib/defillama/protocols";
 import MiniMarketCard from "./charts/MiniMarketCard";
+import { getHyperliquidL1Protocols } from "@/lib/defillama/hyperliquid";
 
-type ProtocolRow = {
-  name: string;
-  slug: string;
-  tvl?: number;
-};
+export const revalidate = 300;
 
 type Source = "hyperliquid" | "binance" | "other";
 
 export default async function HomePage() {
-  const protocols = (await getProtocols()) as ProtocolRow[];
+  const protocols = await getHyperliquidL1Protocols();
 
-  // Top 10 by TVL
   const top10 = protocols
-    .filter((p) => p?.slug && p?.name && typeof p.tvl === "number" && p.tvl > 0)
-    .sort((a, b) => (b.tvl ?? 0) - (a.tvl ?? 0))
+    .filter((p) => typeof p.tvl === "number" && p.tvl > 0)
     .slice(0, 10);
 
-  // Fetch series for each protocol in parallel
   const seriesList = await Promise.all(
     top10.map((p) =>
       getProtocolTvlSeries({ protocolSlug: p.slug, points: 30 }),
     ),
   );
+
+  console.log(seriesList, top10);
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
@@ -54,6 +49,7 @@ export default async function HomePage() {
                 sparkline={series.sparkline}
                 timeframeLabel="30d"
                 compareProperty={false}
+                imageURL={series.imageURL}
               />
             </Grid>
           );

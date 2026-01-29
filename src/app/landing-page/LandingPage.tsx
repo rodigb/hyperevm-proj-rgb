@@ -14,9 +14,9 @@ const drawerWidth = 260;
 
 const quads: Quad[] = [
   {
-    title: "HyperLiquid Chain",
-    subtitle: "Chain overview, metrics, and health",
-    href: "/hyperliquid-chain", // change to your route
+    title: "HyperLiquid Protocols",
+    subtitle: "See the list of HyperLiquid-powered protocols",
+    href: "/protocols-page",
   },
   {
     title: "HyperLiquid Protocol",
@@ -67,35 +67,6 @@ export default function LandingPage() {
                 overflow: "hidden",
                 cursor: q.disabled ? "not-allowed" : "pointer",
                 border: "1px solid rgba(255,255,255,0.08)",
-                background: q.disabled
-                  ? "linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.02) 100%)"
-                  : "linear-gradient(180deg, rgba(80,210,193,0.10) 0%, rgba(255,255,255,0.02) 55%, rgba(0,0,0,0.10) 100%)",
-                transition:
-                  "transform 160ms ease, border-color 160ms ease, background 160ms ease",
-                "&:hover": q.disabled
-                  ? {}
-                  : {
-                      transform: "translateY(-2px)",
-                      borderColor: "rgba(80,210,193,0.35)",
-                      background:
-                        "linear-gradient(180deg, rgba(80,210,193,0.14) 0%, rgba(255,255,255,0.03) 55%, rgba(0,0,0,0.12) 100%)",
-                    },
-
-                // subtle glow blob
-                "&:before": {
-                  content: '""',
-                  position: "absolute",
-                  width: 360,
-                  height: 360,
-                  right: -140,
-                  top: -140,
-                  borderRadius: "50%",
-                  background: q.disabled
-                    ? "rgba(255,255,255,0.06)"
-                    : "rgba(80,210,193,0.20)",
-                  filter: "blur(24px)",
-                  opacity: q.disabled ? 0.35 : 0.55,
-                },
               }}
             >
               <Box sx={{ position: "relative" }}>

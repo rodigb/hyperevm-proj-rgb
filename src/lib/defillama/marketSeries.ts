@@ -2,6 +2,7 @@ export type MarketSeries = {
   lastValue: number | null;
   changePct: number | null;
   sparkline: number[];
+  imageURL?: string;
 };
 
 type ProtocolTvlPoint = { date: number; totalLiquidityUSD: number };
@@ -9,6 +10,7 @@ type ProtocolTvlPoint = { date: number; totalLiquidityUSD: number };
 type ProtocolResponse = {
   name?: string;
   tvl?: ProtocolTvlPoint[];
+  logo?: string;
 };
 
 const BASE = "https://api.llama.fi";
@@ -44,6 +46,7 @@ export async function getProtocolTvlSeries(opts: {
   if (tvl.length < 2) return { lastValue: null, changePct: null, sparkline: [] };
 
   const sliced = tvl.slice(-points);
+  const imageURL = data.logo
   const sparkline = sliced
     .map((p) => Number(p.totalLiquidityUSD))
     .filter((n) => Number.isFinite(n));
@@ -52,5 +55,5 @@ export async function getProtocolTvlSeries(opts: {
   const changePct =
     sparkline.length >= 2 && lastValue != null ? pctChange(sparkline[0], lastValue) : null;
 
-  return { lastValue, changePct, sparkline };
+  return { lastValue, changePct, sparkline, imageURL };
 }
