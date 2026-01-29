@@ -3,7 +3,6 @@ import Grid from "@mui/material/Grid";
 import { getProtocolTvlSeries } from "@/lib/defillama/marketSeries";
 import ProtocolChartClient from "./ProtocolChartClient";
 import { getProtocols } from "@/lib/defillama/protocols";
-import ProtocolInformation from "./ProtocolInformation";
 import MiniMarketCard from "../home-page/charts/MiniMarketCard";
 
 type ProtocolOption = { name: string; slug: string; tvl?: number };

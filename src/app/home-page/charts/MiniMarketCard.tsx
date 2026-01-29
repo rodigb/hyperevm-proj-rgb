@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import Sparkline from "./SparkLine";
-import ProtocolInformation from "@/app/protocol-chart/ProtocolInformation";
+import ProtocolInformation from "@/app/compare/ProtocolInformation";
 
 function formatUsd(n: number) {
   return n >= 1000

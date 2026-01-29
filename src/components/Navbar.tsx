@@ -1,49 +1,174 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 import HyperEVMStatusIcon from "@/app/home-page/components/HyperEVMStatusIcon";
-import { AppBar, Toolbar, Button, Box } from "@mui/material";
+import {
+  Drawer,
+  Box,
+  Divider,
+  Toolbar,
+  Typography,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+
+import HomeIcon from "@mui/icons-material/Home";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import InsertChartIcon from "@mui/icons-material/InsertChart";
+import AutoGraphIcon from "@mui/icons-material/AutoGraph";
+
+const drawerWidth = 260;
 
 const navItems = [
-  { href: "/", label: "Overview" },
-  { href: "/protocols", label: "Protocols" },
-  { href: "/yields", label: "Yields" },
-
-  { href: "/protocol-chart", label: "Protocol Chart" },
+  { href: "/", label: "Overview", icon: HomeIcon },
+  { href: "/protocols", label: "Protocols", icon: CheckBoxIcon },
+  { href: "/yields", label: "Yields", icon: AutoGraphIcon },
+  { href: "/compare", label: "Compare TVL", icon: InsertChartIcon },
 ];
 
-export default function Navbar() {
+export default function Sidebar() {
+  const pathname = usePathname();
+
   return (
-    <AppBar
-      position="sticky"
-      elevation={0}
+    <Drawer
+      variant="permanent"
       sx={{
-        bgcolor: "background.paper",
-        borderBottom: "1px solid rgba(0,0,0,0.08)",
+        width: drawerWidth,
+        flexShrink: 0,
+        "& .MuiDrawer-paper": {
+          width: drawerWidth,
+          boxSizing: "border-box",
+          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+          borderRight: "1px solid rgba(255,255,255,0.08)",
+        },
       }}
     >
-      <Toolbar sx={{ width: "100%", mx: "auto" }}>
-        {/* Navigation Buttons */}
-        <Box sx={{ display: "flex", gap: 1, ml: 3 }}>
-          {navItems.map((item) => (
-            <Button
-              key={item.href}
-              href={item.href}
+      <Toolbar />
+
+      <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+        <Box sx={{ px: 2.5, pt: 2.5, pb: 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Image
+              src="/robot.gif"
+              alt="HyperEVM Logo"
+              width={80}
+              height={80}
+            />
+            <Typography
               sx={{
-                textTransform: "none",
-                fontWeight: 500,
+                mt: 1,
+                fontSize: 20,
+                fontWeight: 800,
+                letterSpacing: 0.2,
               }}
             >
-              {item.label}
-            </Button>
-          ))}
+              <span style={{ color: "#50d2c1" }}>Hyper</span>Board
+            </Typography>
+            <Typography
+              sx={{ mt: 0.5, fontSize: 12, color: "rgba(255,255,255,0.55)" }}
+            >
+              Dashboard
+            </Typography>
+          </Box>
         </Box>
 
-        {/* Spacer */}
+        <Divider sx={{ borderColor: "rgba(255,255,255,0.08)" }} />
+
+        <Box sx={{ px: 1.25, py: 1.25 }}>
+          <List sx={{ display: "flex", flexDirection: "column", gap: 0.5 }}>
+            {navItems.map((item) => {
+              const selected =
+                item.href === "/"
+                  ? pathname === "/"
+                  : pathname?.startsWith(item.href);
+
+              const Icon = item.icon;
+
+              return (
+                <ListItemButton
+                  key={item.href}
+                  component={Link}
+                  href={item.href}
+                  selected={selected}
+                  sx={{
+                    borderRadius: 2,
+                    px: 1.5,
+                    py: 1.05,
+                    color: selected ? "#50d2c1" : "rgba(255,255,255,0.65)",
+                    transition: "all 140ms ease",
+                    "&:hover": {
+                      bgcolor: "rgba(80,210,193,0.08)",
+                    },
+                    "&.Mui-selected": {
+                      bgcolor: "rgba(80,210,193,0.10)",
+                      color: "#ffffff",
+                      "&:hover": { bgcolor: "rgba(80,210,193,0.18)" },
+                      position: "relative",
+                      // left accent bar
+                      "&:before": {
+                        content: '""',
+                        position: "absolute",
+                        left: 0,
+                        top: 8,
+                        bottom: 8,
+                        width: 3,
+                        borderRadius: 2,
+                        backgroundColor: "#50d2c1",
+                      },
+                    },
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 40,
+                      color: "#50d2c1",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Icon fontSize="small" />
+                  </ListItemIcon>
+
+                  <ListItemText
+                    primary={item.label}
+                    primaryTypographyProps={{
+                      sx: { fontWeight: selected ? 700 : 600, fontSize: 14 },
+                    }}
+                  />
+                </ListItemButton>
+              );
+            })}
+          </List>
+        </Box>
+
         <Box sx={{ flexGrow: 1 }} />
 
-        {/* Status Icon */}
-        <HyperEVMStatusIcon />
-      </Toolbar>
-    </AppBar>
+        <Divider sx={{ borderColor: "rgba(255,255,255,0.08)" }} />
+
+        <Box sx={{ px: 2, py: 2 }}>
+          <Box
+            sx={{
+              p: 1.25,
+              borderRadius: 2,
+              bgcolor: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.06)",
+            }}
+          >
+            <HyperEVMStatusIcon />
+          </Box>
+        </Box>
+      </Box>
+    </Drawer>
   );
 }

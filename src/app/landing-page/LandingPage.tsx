@@ -1,79 +1,168 @@
 "use client";
 
 import Link from "next/link";
-import { Box, Button, Container, Typography, Card } from "@mui/material";
-import { useRouter } from "next/navigation";
+import { Box, Container, Typography } from "@mui/material";
+
+type Quad = {
+  title: string;
+  subtitle?: string;
+  href?: string;
+  disabled?: boolean;
+};
+
+const drawerWidth = 260;
+
+const quads: Quad[] = [
+  {
+    title: "HyperLiquid Chain",
+    subtitle: "Chain overview, metrics, and health",
+    href: "/hyperliquid-chain", // change to your route
+  },
+  {
+    title: "HyperLiquid Protocol",
+    subtitle: "Protocol analytics and ecosystem",
+    href: "/hyperliquid-protocol", // change to your route
+  },
+  {
+    title: "HyperEVM",
+    subtitle: "DeFiLlama-powered dashboard",
+    href: "/", // your current dashboard entry
+  },
+  {
+    title: "Coming soon",
+    subtitle: "More modules are on the way",
+    disabled: true,
+  },
+];
 
 export default function LandingPage() {
-  const router = useRouter();
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        bgcolor: "background.default",
+        bgcolor: "#070B12",
+        ml: `${drawerWidth}px`,
       }}
     >
-      <Container maxWidth="md">
-        <Card
-          sx={{
-            p: { xs: 4, md: 6 },
-            borderRadius: 5,
-            textAlign: "center",
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
-          <Box
-            aria-hidden
-            sx={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "radial-gradient(800px 400px at 30% 20%, rgba(37,230,213,0.18), transparent 60%), radial-gradient(700px 380px at 80% 30%, rgba(124,92,255,0.14), transparent 55%)",
-              pointerEvents: "none",
-            }}
-          />
-
-          <Box sx={{ position: "relative", zIndex: 1 }}>
-            <Typography
-              variant="h2"
+      <Box
+        sx={{
+          height: "calc(90dvh - 48px)", // container padding compensation
+          display: "grid",
+          width: "100%",
+          gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+          gridTemplateRows: { xs: "repeat(4, 1fr)", md: "1fr 1fr" },
+          gap: 2,
+        }}
+      >
+        {quads.map((q) => {
+          const Card = (
+            <Box
               sx={{
-                fontWeight: 900,
-                letterSpacing: "-0.05em",
-                mb: 1.5,
+                height: "100%",
+                borderRadius: 4,
+                p: { xs: 3, md: 4 },
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                position: "relative",
+                overflow: "hidden",
+                cursor: q.disabled ? "not-allowed" : "pointer",
+                border: "1px solid rgba(255,255,255,0.08)",
+                background: q.disabled
+                  ? "linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.02) 100%)"
+                  : "linear-gradient(180deg, rgba(80,210,193,0.10) 0%, rgba(255,255,255,0.02) 55%, rgba(0,0,0,0.10) 100%)",
+                transition:
+                  "transform 160ms ease, border-color 160ms ease, background 160ms ease",
+                "&:hover": q.disabled
+                  ? {}
+                  : {
+                      transform: "translateY(-2px)",
+                      borderColor: "rgba(80,210,193,0.35)",
+                      background:
+                        "linear-gradient(180deg, rgba(80,210,193,0.14) 0%, rgba(255,255,255,0.03) 55%, rgba(0,0,0,0.12) 100%)",
+                    },
+
+                // subtle glow blob
+                "&:before": {
+                  content: '""',
+                  position: "absolute",
+                  width: 360,
+                  height: 360,
+                  right: -140,
+                  top: -140,
+                  borderRadius: "50%",
+                  background: q.disabled
+                    ? "rgba(255,255,255,0.06)"
+                    : "rgba(80,210,193,0.20)",
+                  filter: "blur(24px)",
+                  opacity: q.disabled ? 0.35 : 0.55,
+                },
               }}
             >
-              HyperEVM Dashboard
-            </Typography>
+              <Box sx={{ position: "relative" }}>
+                <Typography
+                  sx={{
+                    fontSize: { xs: 22, md: 28 },
+                    fontWeight: 900,
+                    letterSpacing: "-0.02em",
+                    color: q.disabled ? "rgba(255,255,255,0.70)" : "#E8FFFB",
+                  }}
+                >
+                  {q.title}
+                </Typography>
 
-            <Typography
-              variant="body1"
-              color="text.secondary"
-              sx={{ maxWidth: 520, mx: "auto", mb: 4 }}
-            >
-              Explore protocol TVL, ecosystem growth, and on-chain health across
-              the HyperEVM ecosystem.
-            </Typography>
+                {q.subtitle && (
+                  <Typography
+                    sx={{
+                      mt: 1,
+                      maxWidth: 420,
+                      fontSize: { xs: 13, md: 14 },
+                      lineHeight: 1.6,
+                      color: "rgba(255,255,255,0.70)",
+                    }}
+                  >
+                    {q.subtitle}
+                  </Typography>
+                )}
+              </Box>
 
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                px: 4,
-                py: 1.4,
-                borderRadius: 3,
-                fontWeight: 700,
-                boxShadow: "0 0 18px rgba(37,230,213,0.25)",
-              }}
-              onClick={() => router.push("/home-page")}
-            >
-              Enter Dashboard →
-            </Button>
-          </Box>
-        </Card>
-      </Container>
+              <Box
+                sx={{
+                  position: "relative",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontSize: 13,
+                    fontWeight: 800,
+                    color: q.disabled
+                      ? "rgba(255,255,255,0.45)"
+                      : "rgba(80,210,193,0.95)",
+                  }}
+                >
+                  {q.disabled ? "Locked" : "Open →"}
+                </Typography>
+              </Box>
+            </Box>
+          );
+
+          if (q.href && !q.disabled) {
+            return (
+              <Box
+                key={q.title}
+                component={Link}
+                href={q.href}
+                sx={{ textDecoration: "none" }}
+              >
+                {Card}
+              </Box>
+            );
+          }
+
+          return <Box key={q.title}>{Card}</Box>;
+        })}
+      </Box>
     </Box>
   );
 }
