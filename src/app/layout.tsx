@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-
-import { Container } from "@mui/material";
-import Navbar from "../components/Navbar";
+import { Box } from "@mui/material";
 import Providers from "./providers";
+import Sidebar from "../components/Navbar";
 
 export const metadata: Metadata = {
   title: "HyperEVM Dashboard",
@@ -18,11 +17,19 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <Navbar />
-
-          <Container maxWidth="lg" sx={{ mt: 4, pb: 8 }}>
-            {children}
-          </Container>
+          <Box sx={{ display: "flex", minHeight: "100dvh" }}>
+            <Sidebar />
+            <Box
+              component="main"
+              sx={{
+                flexGrow: 1,
+                px: { xs: 4, md: 6 },
+                py: { xs: 4, md: 6 },
+              }}
+            >
+              {children}
+            </Box>
+          </Box>
         </Providers>
       </body>
     </html>

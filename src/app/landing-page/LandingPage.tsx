@@ -10,8 +10,6 @@ type Quad = {
   disabled?: boolean;
 };
 
-const drawerWidth = 260;
-
 const quads: Quad[] = [
   {
     title: "HyperLiquid Protocols",
@@ -40,7 +38,6 @@ export default function LandingPage() {
     <Box
       sx={{
         bgcolor: "#070B12",
-        ml: `${drawerWidth}px`,
       }}
     >
       <Box

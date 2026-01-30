@@ -8,7 +8,6 @@ import {
   Drawer,
   Box,
   Divider,
-  Toolbar,
   List,
   ListItemButton,
   ListItemIcon,
@@ -21,7 +20,7 @@ import InsertChartIcon from "@mui/icons-material/InsertChart";
 import AutoGraphIcon from "@mui/icons-material/AutoGraph";
 import AppIcon from "./AppIcon";
 
-const drawerWidth = 260;
+export const drawerWidth = 260;
 
 const navItems = [
   { href: "/", label: "Overview", icon: HomeIcon },
@@ -47,15 +46,15 @@ export default function Sidebar() {
         },
       }}
     >
-      <Toolbar />
-
       <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+        {/* Header */}
         <Box sx={{ px: 2.5, pt: 2.5, pb: 2 }}>
           <AppIcon />
         </Box>
 
         <Divider sx={{ borderColor: "rgba(255,255,255,0.08)" }} />
 
+        {/* Nav */}
         <Box sx={{ px: 1.25, py: 1.25 }}>
           <List sx={{ display: "flex", flexDirection: "column", gap: 0.5 }}>
             {navItems.map((item) => {
@@ -86,7 +85,6 @@ export default function Sidebar() {
                       color: "#ffffff",
                       "&:hover": { bgcolor: "rgba(80,210,193,0.18)" },
                       position: "relative",
-                      // left accent bar
                       "&:before": {
                         content: '""',
                         position: "absolute",
@@ -127,6 +125,7 @@ export default function Sidebar() {
 
         <Divider sx={{ borderColor: "rgba(255,255,255,0.08)" }} />
 
+        {/* Status */}
         <Box sx={{ px: 2, py: 2 }}>
           <Box
             sx={{

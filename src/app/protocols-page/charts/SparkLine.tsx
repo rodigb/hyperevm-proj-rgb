@@ -1,12 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { Box } from "@mui/material";
 
 export default function Sparkline({
   values,
-  height = 46,
-  width = 170,
+  height = 26,
+  width = 100,
 }: {
   values: number[];
   height?: number;
@@ -18,7 +17,6 @@ export default function Sparkline({
     const min = Math.min(...values);
     const max = Math.max(...values);
     const range = max - min || 1;
-
     const stepX = width / (values.length - 1);
 
     const points = values.map((v, i) => {
@@ -37,22 +35,13 @@ export default function Sparkline({
   if (!path) return null;
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-        height: "100%",
-        opacity: 0.95,
-        p: 1,
-      }}
+    <svg
+      width={width}
+      height={height}
+      viewBox={`0 0 ${width} ${height}`}
+      aria-hidden
     >
-      <svg
-        width={width}
-        height={height}
-        viewBox={`0 0 ${width} ${height}`}
-        aria-hidden
-      >
-        <path d={path} fill="none" stroke="currentColor" strokeWidth="2" />
-      </svg>
-    </Box>
+      <path d={path} fill="none" stroke="currentColor" strokeWidth="2" />
+    </svg>
   );
 }

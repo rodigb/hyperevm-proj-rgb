@@ -1,60 +1,38 @@
+"use client";
+
 import { Box } from "@mui/material";
-import Grid from "@mui/material/Grid";
 import Hero from "./components/Hero";
-import { getProtocolTvlSeries } from "@/lib/defillama/marketSeries";
-import MiniMarketCard from "./charts/MiniMarketCard";
-import { getHyperliquidL1Protocols } from "@/lib/defillama/hyperliquid";
+import ProtocolTable from "./components/ProtocolTable";
+import { useHyperliquidL1Protocols } from "@/lib/defillama/useHyperliquidL1Protocols";
+import { useProtocolSparklines } from "@/lib/defillama/useProtocolSparklines";
 
-export const revalidate = 300;
+export default function HomePage() {
+  const {
+    protocols,
+    isLoading: protocolsLoading,
+    error,
+  } = useHyperliquidL1Protocols();
 
-type Source = "hyperliquid" | "binance" | "other";
+  const slugs = protocols.map((p) => p.slug);
+  const { sparklinesBySlug, isLoading: sparklinesLoading } =
+    useProtocolSparklines(slugs, 30);
 
-export default async function HomePage() {
-  const protocols = await getHyperliquidL1Protocols();
+  const loading = protocolsLoading || sparklinesLoading;
 
-  const top10 = protocols
-    .filter((p) => typeof p.tvl === "number" && p.tvl > 0)
-    .slice(0, 10);
-
-  const seriesList = await Promise.all(
-    top10.map((p) =>
-      getProtocolTvlSeries({ protocolSlug: p.slug, points: 30 }),
-    ),
-  );
-
-  console.log(seriesList, top10);
+  const rows = protocols.map((p) => ({
+    ...p,
+    sparkline: sparklinesBySlug[p.slug] ?? [],
+  }));
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
       <Hero />
 
-      <Grid container spacing={2}>
-        {top10.map((p, i) => {
-          const series = seriesList[i];
-
-          const source =
-            p.slug === "hyperliquid"
-              ? "hyperliquid"
-              : p.slug === "binance-cex"
-                ? "binance"
-                : "hyperliquid";
-
-          return (
-            <Grid key={p.slug} size={{ xs: 12 }}>
-              <MiniMarketCard
-                source={source as Source}
-                title={`${p.name} TVL`}
-                lastValue={series.lastValue}
-                changePct={series.changePct}
-                sparkline={series.sparkline}
-                timeframeLabel="30d"
-                compareProperty={false}
-                imageURL={series.imageURL}
-              />
-            </Grid>
-          );
-        })}
-      </Grid>
+      {error ? (
+        <div>Failed to load protocols.</div>
+      ) : (
+        <ProtocolTable protocols={rows} loading={loading} skeletonRows={100} />
+      )}
     </Box>
   );
 }

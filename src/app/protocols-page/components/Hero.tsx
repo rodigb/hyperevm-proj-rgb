@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, Stack, Typography } from "@mui/material";
 
-export default async function Hero() {
+export default function Hero() {
   return (
     <Card sx={{ position: "relative", overflow: "hidden" }}>
       <Box
@@ -21,7 +21,7 @@ export default async function Hero() {
               lineHeight: 1.1,
             }}
           >
-            HyperEVM Ecosystem Dashboard
+            HyperLiquid L1 Protocols
           </Typography>
         </Stack>
       </CardContent>
