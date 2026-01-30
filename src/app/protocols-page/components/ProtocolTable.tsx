@@ -22,6 +22,7 @@ type ProtocolRow = {
   change_7d?: number;
   change_1h?: number;
   sparkline?: number[];
+  category?: string;
 };
 
 export default function ProtocolTable({
@@ -33,6 +34,7 @@ export default function ProtocolTable({
   loading?: boolean;
   skeletonRows?: number;
 }) {
+  console.log("Rendering ProtocolTable with protocols:", protocols);
   return (
     <Box
       sx={{
@@ -50,6 +52,9 @@ export default function ProtocolTable({
             </TableCell>
             <TableCell sx={{ color: "rgba(255,255,255,0.6)" }}>
               Protocol
+            </TableCell>
+            <TableCell sx={{ color: "rgba(255,255,255,0.6)" }}>
+              Category
             </TableCell>
             <TableCell align="right" sx={{ color: "rgba(255,255,255,0.6)" }}>
               TVL
@@ -137,6 +142,15 @@ export default function ProtocolTable({
                       />
                       <Typography sx={{ fontWeight: 700, color: "#fff" }}>
                         {p.name}
+                      </Typography>
+                    </Box>
+                  </TableCell>
+                  <TableCell>
+                    <Box
+                      sx={{ display: "flex", alignItems: "center", gap: 1.5 }}
+                    >
+                      <Typography sx={{ fontWeight: 700, color: "#fff" }}>
+                        {p.category}
                       </Typography>
                     </Box>
                   </TableCell>
