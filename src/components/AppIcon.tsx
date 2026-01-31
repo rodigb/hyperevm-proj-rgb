@@ -11,7 +11,13 @@ export default function AppIcon() {
           alignItems: "center",
         }}
       >
-        <Image src="/robot.gif" alt="HyperEVM Logo" width={80} height={80} />
+        <Image
+          unoptimized
+          src="/robot.gif"
+          alt="HyperEVM Logo"
+          width={80}
+          height={80}
+        />
         <Typography
           sx={{
             mt: 1,

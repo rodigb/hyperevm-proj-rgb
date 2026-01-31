@@ -84,7 +84,6 @@ export default function ProtocolTable({
                   <TableCell sx={{ color: "rgba(255,255,255,0.4)" }}>
                     {i + 1}
                   </TableCell>
-
                   <TableCell>
                     <Box
                       sx={{ display: "flex", alignItems: "center", gap: 1.5 }}
@@ -93,7 +92,6 @@ export default function ProtocolTable({
                       <Skeleton variant="text" width={160} />
                     </Box>
                   </TableCell>
-
                   <TableCell align="right">
                     <Skeleton variant="text" width={90} sx={{ ml: "auto" }} />
                   </TableCell>
@@ -106,7 +104,9 @@ export default function ProtocolTable({
                   <TableCell align="right">
                     <Skeleton variant="text" width={55} sx={{ ml: "auto" }} />
                   </TableCell>
-
+                  <TableCell align="right">
+                    <Skeleton variant="text" width={55} sx={{ ml: "auto" }} />
+                  </TableCell>
                   <TableCell align="right" sx={{ width: 140 }}>
                     <Skeleton
                       variant="rectangular"
