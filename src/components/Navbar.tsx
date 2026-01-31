@@ -41,7 +41,15 @@ export default function Sidebar() {
         "& .MuiDrawer-paper": {
           width: drawerWidth,
           boxSizing: "border-box",
-          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+          background: `
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.03) 0px,
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 5px
+        ),
+        linear-gradient(180deg, #09121f 0%, #05080f 100%)
+      `,
           borderRight: "1px solid rgba(255,255,255,0.08)",
         },
       }}
@@ -112,7 +120,7 @@ export default function Sidebar() {
                   <ListItemText
                     primary={item.label}
                     primaryTypographyProps={{
-                      sx: { fontWeight: selected ? 700 : 600, fontSize: 14 },
+                      sx: { fontWeight: selected ? 700 : 600, fontSize: 16 },
                     }}
                   />
                 </ListItemButton>

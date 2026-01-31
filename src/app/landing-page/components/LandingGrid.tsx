@@ -2,6 +2,11 @@ import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import React from "react";
 import LandingGridItem from "./LandingGriditem";
+import GroupIcon from "@mui/icons-material/Group";
+import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
+import PaidIcon from "@mui/icons-material/Paid";
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import Graph from "./Graph";
 
 function LandingGrid() {
   const TradingVolume = 92392839289;
@@ -10,40 +15,107 @@ function LandingGrid() {
     currency: "USD",
     maximumFractionDigits: 0,
   });
+  const TotalOpenInterest = 92392839289;
+  const TotalOpenInterestToDollar = TotalOpenInterest.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+  const TotalActiveTraders = 19000;
+
+  const TotalFees = 2359324;
+  const TotalFeesToDollar = TotalFees.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+
   return (
-    <Grid sx={{ height: "100%", bgcolor: "red" }} container spacing={2}>
-      <Grid sx={{ bgcolor: "blue" }} size={3}>
+    <Grid container spacing={2}>
+      <Grid
+        sx={{
+          border: "3px solid #0f1c26",
+          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+        }}
+        size={3}
+      >
         <LandingGridItem
           title="24h Trading Volume"
           value={TradingVolumToDollar}
+          icon={<QueryBuilderIcon />}
         />
       </Grid>
-      <Grid sx={{ bgcolor: "blue" }} size={3}>
+      <Grid
+        sx={{
+          border: "3px solid #0f1c26",
+          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+        }}
+        size={3}
+      >
         <LandingGridItem
-          title="24h Trading Volume"
-          value={TradingVolumToDollar}
+          title="Total Open Interest"
+          value={TotalOpenInterestToDollar}
+          icon={<PaidIcon />}
         />
       </Grid>
-      <Grid sx={{ bgcolor: "blue" }} size={3}>
+      <Grid
+        sx={{
+          border: "3px solid #0f1c26",
+          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+        }}
+        size={3}
+      >
         <LandingGridItem
-          title="24h Trading Volume"
-          value={TradingVolumToDollar}
+          title="Total Active Traders"
+          value={TotalActiveTraders.toLocaleString()}
+          icon={<GroupIcon />}
         />
       </Grid>
-      <Grid sx={{ bgcolor: "blue" }} size={3}>
+      <Grid
+        sx={{
+          border: "3px solid #0f1c26",
+          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+        }}
+        size={3}
+      >
         <LandingGridItem
-          title="24h Trading Volume"
-          value={TradingVolumToDollar}
+          title="Total Fees Generated"
+          value={TotalActiveTraders.toLocaleString()}
+          icon={<CurrencyExchangeIcon />}
         />
       </Grid>
-      <Grid size={4}>
-        <Grid>size=4</Grid>
+      <Grid
+        sx={{
+          border: "3px solid #0f1c26",
+          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+        }}
+        size={4}
+      >
+        <Graph />
       </Grid>
-      <Grid size={4}>
-        <Grid>size=4</Grid>
-      </Grid>
-      <Grid size={8}>
-        <Grid>size=8</Grid>
+      <Grid
+        sx={{
+          border: "3px solid #0f1c26",
+          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+        }}
+        size={4}
+      >
+        <LandingGridItem
+          title="Total Fees Generated"
+          value={TotalActiveTraders.toLocaleString()}
+          icon={<CurrencyExchangeIcon />}
+        />
+      </Grid>{" "}
+      <Grid
+        sx={{
+          border: "3px solid #0f1c26",
+          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+        }}
+        size={4}
+      >
+        <LandingGridItem
+          title="Total Fees Generated"
+          value={TotalActiveTraders.toLocaleString()}
+          icon={<CurrencyExchangeIcon />}
+        />
       </Grid>
     </Grid>
   );

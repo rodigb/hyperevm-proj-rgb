@@ -5,6 +5,20 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import LinkBehavior from "../components/LinkBehaviour";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
+import { Pixelify_Sans } from "next/font/google";
+import image from "next/image";
+
+const sixtyFour = Pixelify_Sans({ subsets: ["latin"], weight: "400" });
+
+const terminalBackground = `
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.03) 0px,
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 5px
+        ),
+        linear-gradient(180deg, #09121f 0%, #05080f 100%)
+      `;
 
 const theme = createTheme({
   palette: {
@@ -35,6 +49,7 @@ const theme = createTheme({
 
   typography: {
     fontFamily: [
+      sixtyFour.style.fontFamily,
       "Inter",
       "system-ui",
       "-apple-system",
@@ -60,6 +75,17 @@ const theme = createTheme({
   },
 
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          margin: 0,
+          minHeight: "100vh",
+          backgroundColor: "rgb(0, 0, 0)",
+          backgroundImage:
+            "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0px, rgb(0, 0, 0) 1px, transparent 5px, transparent 5px)",
+        },
+      },
+    },
     MuiLink: {
       defaultProps: {
         component: LinkBehavior,
