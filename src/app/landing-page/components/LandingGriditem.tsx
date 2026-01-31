@@ -1,13 +1,15 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Skeleton } from "@mui/material";
 
 function LandingGridItem({
   title,
   value,
   icon,
+  isLoading,
 }: {
   title: string;
   value: string | number;
   icon?: React.ReactNode;
+  isLoading?: boolean;
 }) {
   return (
     <Box
@@ -34,7 +36,11 @@ function LandingGridItem({
           {title}
         </Typography>
       </Box>
-      <Typography sx={{ fontSize: "1.5rem" }}>{value}</Typography>
+      {isLoading ? (
+        <Skeleton variant="text" sx={{ fontSize: "1.5rem", mt: 1 }} />
+      ) : (
+        <Typography sx={{ fontSize: "1.5rem" }}>{value}</Typography>
+      )}
     </Box>
   );
 }
