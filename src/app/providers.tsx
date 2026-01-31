@@ -5,20 +5,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import LinkBehavior from "../components/LinkBehaviour";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
-import { Pixelify_Sans } from "next/font/google";
-import image from "next/image";
+import { VT323 } from "next/font/google";
 
-const sixtyFour = Pixelify_Sans({ subsets: ["latin"], weight: "400" });
-
-const terminalBackground = `
-        repeating-linear-gradient(
-          to bottom,
-          rgba(255, 255, 255, 0.03) 0px,
-          rgba(255, 255, 255, 0.03) 1px,
-          transparent 5px
-        ),
-        linear-gradient(180deg, #09121f 0%, #05080f 100%)
-      `;
+const sixtyFour = VT323({ subsets: ["latin"], weight: "400" });
 
 const theme = createTheme({
   palette: {
@@ -94,6 +83,18 @@ const theme = createTheme({
     MuiButtonBase: {
       defaultProps: {
         LinkComponent: LinkBehavior,
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: "none",
+          minWidth: 44,
+          bgcolor: "transparent",
+          border: "1px solid rgba(255,255,255,0.10)",
+          color: "white",
+          "&:hover": { bgcolor: "rgba(80,210,193,0.22)" },
+        },
       },
     },
 

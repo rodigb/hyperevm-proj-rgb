@@ -7,14 +7,12 @@ import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 import PaidIcon from "@mui/icons-material/Paid";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import Graph from "./Graph";
+import { useHyperliquidL1Derivatives } from "@/lib/defillama/useHyperLiquidL1Derivatives";
+import ToDollarsFunction from "./ToDollarsFunction";
 
 function LandingGrid() {
   const TradingVolume = 92392839289;
-  const TradingVolumToDollar = TradingVolume.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  });
+
   const TotalOpenInterest = 92392839289;
   const TotalOpenInterestToDollar = TotalOpenInterest.toLocaleString("en-US", {
     style: "currency",
@@ -28,6 +26,10 @@ function LandingGrid() {
     currency: "USD",
   });
 
+  const { totals } = useHyperliquidL1Derivatives();
+
+  console.log("totals", totals?.total24h);
+
   return (
     <Grid container spacing={2}>
       <Grid
@@ -39,7 +41,9 @@ function LandingGrid() {
       >
         <LandingGridItem
           title="24h Trading Volume"
-          value={TradingVolumToDollar}
+          value={ToDollarsFunction({
+            value: totals?.total24h ? totals.total24h : 0,
+          })}
           icon={<QueryBuilderIcon />}
         />
       </Grid>
