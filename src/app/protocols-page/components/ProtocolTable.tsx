@@ -28,11 +28,13 @@ type ProtocolRow = {
 export default function ProtocolTable({
   protocols,
   loading = false,
-  skeletonRows = 100,
+  skeletonRows,
+  limit,
 }: {
   protocols: ProtocolRow[];
   loading?: boolean;
   skeletonRows?: number;
+  limit?: number;
 }) {
   console.log("Rendering ProtocolTable with protocols:", protocols);
   return (
@@ -76,7 +78,7 @@ export default function ProtocolTable({
 
         <TableBody>
           {loading
-            ? Array.from({ length: skeletonRows }).map((_, i) => (
+            ? Array.from({ length: skeletonRows ?? 10 }).map((_, i) => (
                 <TableRow
                   key={`sk-${i}`}
                   sx={{ "& td": { borderColor: "rgba(255,255,255,0.06)" } }}
@@ -117,7 +119,7 @@ export default function ProtocolTable({
                   </TableCell>
                 </TableRow>
               ))
-            : protocols.map((p, i) => (
+            : protocols.slice(0, limit).map((p, i) => (
                 <TableRow
                   key={p.slug}
                   sx={{

@@ -9,6 +9,9 @@ import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import Graph from "./graph/Graph";
 import { useHyperliquidL1Derivatives } from "@/lib/defillama/useHyperLiquidL1Derivatives";
 import ToDollarsFunction from "./functions/ToDollarsFunction";
+import ProtocolTable from "@/app/protocols-page/components/ProtocolTable";
+import { useHyperliquidL1Protocols } from "@/lib/defillama/useHyperliquidL1Protocols";
+import { useProtocolSparklines } from "@/lib/defillama/useProtocolSparklines";
 
 function LandingGrid() {
   const TotalOpenInterest = 92392839289;
@@ -19,6 +22,23 @@ function LandingGrid() {
   const TotalActiveTraders = 19000;
 
   const { totals, isLoading } = useHyperliquidL1Derivatives();
+
+  const {
+    protocols,
+    isLoading: protocolsLoading,
+    error,
+  } = useHyperliquidL1Protocols();
+
+  const slugs = protocols.map((p) => p.slug);
+  const { sparklinesBySlug, isLoading: sparklinesLoading } =
+    useProtocolSparklines(slugs, 30);
+
+  const loading = protocolsLoading || sparklinesLoading;
+
+  const rows = protocols.map((p) => ({
+    ...p,
+    sparkline: sparklinesBySlug[p.slug] ?? [],
+  }));
 
   return (
     <Grid container spacing={2}>
@@ -90,21 +110,25 @@ function LandingGrid() {
         sx={{
           border: "3px solid #0f1c26",
           background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+          maxHeight: 390,
         }}
-        size={4}
+        size={6}
       >
-        <LandingGridItem
-          title="Total Fees Generated"
-          value={TotalActiveTraders.toLocaleString()}
-          icon={<CurrencyExchangeIcon />}
-        />
-      </Grid>{" "}
+        <Box sx={{ overflowY: "auto", maxHeight: "100%" }}>
+          <ProtocolTable
+            protocols={rows}
+            loading={loading}
+            skeletonRows={5}
+            limit={20}
+          />
+        </Box>
+      </Grid>
       <Grid
         sx={{
           border: "3px solid #0f1c26",
           background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
         }}
-        size={4}
+        size={2}
       >
         <LandingGridItem
           title="Total Fees Generated"

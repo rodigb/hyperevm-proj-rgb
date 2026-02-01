@@ -31,7 +31,12 @@ export default function HomePage() {
       {error ? (
         <div>Failed to load protocols.</div>
       ) : (
-        <ProtocolTable protocols={rows} loading={loading} skeletonRows={100} />
+        <ProtocolTable
+          protocols={rows}
+          loading={loading}
+          skeletonRows={100}
+          limit={100}
+        />
       )}
     </Box>
   );
