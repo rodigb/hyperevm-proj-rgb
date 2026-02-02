@@ -14,7 +14,7 @@ import {
   ListItemText,
 } from "@mui/material";
 
-import HomeIcon from "@mui/icons-material/Home";
+import GridViewIcon from "@mui/icons-material/GridView";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import AutoGraphIcon from "@mui/icons-material/AutoGraph";
@@ -23,7 +23,7 @@ import AppIcon from "./AppIcon";
 export const drawerWidth = 260;
 
 const navItems = [
-  { href: "/", label: "Overview", icon: HomeIcon },
+  { href: "/", label: "Dashboard", icon: GridViewIcon },
   { href: "/protocols-page", label: "Protocols", icon: CheckBoxIcon },
   { href: "/yields", label: "Yields", icon: AutoGraphIcon },
   { href: "/compare", label: "Compare TVL", icon: InsertChartIcon },

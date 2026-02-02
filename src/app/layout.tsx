@@ -23,8 +23,8 @@ export default function RootLayout({
               component="main"
               sx={{
                 flexGrow: 1,
-                px: { xs: 4, md: 6 },
-                py: { xs: 4, md: 6 },
+                px: { xs: 2, md: 6 },
+                py: { xs: 2, md: 6 },
               }}
             >
               {children}

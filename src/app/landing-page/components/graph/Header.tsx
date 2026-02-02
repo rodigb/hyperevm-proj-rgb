@@ -42,9 +42,6 @@ function Header({
       <Box
         sx={{
           px: 2,
-          borderRadius: 3,
-          border: "1px solid rgba(255,255,255,0.10)",
-          background: "rgba(255,255,255,0.03)",
           minWidth: 150,
           textAlign: "right",
         }}

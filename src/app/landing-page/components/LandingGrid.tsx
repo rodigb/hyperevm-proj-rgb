@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import LandingGridItem from "./LandingGriditem";
 import GroupIcon from "@mui/icons-material/Group";
@@ -30,82 +30,87 @@ function LandingGrid() {
   }));
 
   return (
-    <Grid container spacing={0.5}>
-      <Grid
-        sx={{
-          border: "3px solid #0f1c26",
-          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
-        }}
-        size={2}
-      >
-        <FeesGeneratedCard />
+    <>
+      <Box sx={{ mb: 2, ml: 1 }}>
+        <Typography fontSize={32}>Dashboard</Typography>
+      </Box>
+      <Grid container spacing={2}>
+        <Grid
+          sx={{
+            border: "3px solid #0f1c26",
+            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+          }}
+          size={2}
+        >
+          <FeesGeneratedCard />
+        </Grid>
+        <Grid
+          sx={{
+            border: "3px solid #0f1c26",
+            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+          }}
+          size={2}
+        >
+          <RevenueGeneratedCard />
+        </Grid>
+        <Grid
+          sx={{
+            border: "3px solid #0f1c26",
+            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+          }}
+          size={2}
+        ></Grid>
+        <Grid
+          sx={{
+            border: "3px solid #0f1c26",
+            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+          }}
+          size={2}
+        ></Grid>
+        <Grid
+          sx={{
+            border: "3px solid #0f1c26",
+            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+          }}
+          size={2}
+        ></Grid>
+        <Grid
+          sx={{
+            border: "3px solid #0f1c26",
+            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+          }}
+          size={2}
+        >
+          <OpenInterestCard />
+        </Grid>
+        <Grid
+          sx={{
+            border: "3px solid #0f1c26",
+            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+          }}
+          size={6}
+        >
+          <Graph />
+        </Grid>
+        <Grid
+          sx={{
+            border: "3px solid #0f1c26",
+            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+            maxHeight: 390,
+          }}
+          size={6}
+        >
+          <Box sx={{ overflowY: "auto", maxHeight: "100%" }}>
+            <ProtocolTable
+              protocols={rows}
+              loading={loading}
+              skeletonRows={5}
+              limit={20}
+            />
+          </Box>
+        </Grid>
       </Grid>
-      <Grid
-        sx={{
-          border: "3px solid #0f1c26",
-          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
-        }}
-        size={2}
-      >
-        <RevenueGeneratedCard />
-      </Grid>
-      <Grid
-        sx={{
-          border: "3px solid #0f1c26",
-          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
-        }}
-        size={2}
-      ></Grid>
-      <Grid
-        sx={{
-          border: "3px solid #0f1c26",
-          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
-        }}
-        size={2}
-      ></Grid>
-      <Grid
-        sx={{
-          border: "3px solid #0f1c26",
-          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
-        }}
-        size={2}
-      ></Grid>
-      <Grid
-        sx={{
-          border: "3px solid #0f1c26",
-          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
-        }}
-        size={2}
-      >
-        <OpenInterestCard />
-      </Grid>
-      <Grid
-        sx={{
-          border: "3px solid #0f1c26",
-          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
-        }}
-        size={6}
-      >
-        <Graph />
-      </Grid>
-      <Grid
-        sx={{
-          border: "3px solid #0f1c26",
-          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
-          maxHeight: 390,
-        }}
-        size={6}
-      >
-        <Box sx={{ overflowY: "auto", maxHeight: "100%" }}>
-          <ProtocolTable
-            protocols={rows}
-            loading={loading}
-            skeletonRows={5}
-            limit={20}
-          />
-        </Box>
-      </Grid>
-    </Grid>
+    </>
   );
 }
 
