@@ -1,7 +1,7 @@
 "use client";
 
 import useSWR from "swr";
-import { getProtocolTvlSeries } from "@/lib/defillama/marketSeries";
+import { getProtocolTvlSeries } from "@/lib/api/defillama/marketSeries";
 
 type SparklineMap = Record<string, number[]>;
 

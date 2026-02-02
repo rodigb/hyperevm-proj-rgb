@@ -3,8 +3,8 @@
 import LandingGridItem from "../LandingGriditem";
 import ToDollarsFunction from "../utility/ToDollarsFunction";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
-import { useHypePrice } from "@/lib/defillama/useHyperLiquidTokenPrice";
-import { useHypePriceChange } from "@/lib/defillama/useHypePriceChange";
+import { useHypePrice } from "@/lib/api/defillama/useHyperLiquidTokenPrice";
+import { useHypePriceChange } from "@/lib/api/defillama/useHypePriceChange";
 import { Box } from "@mui/material";
 
 export default function HypeTokenPriceCard() {

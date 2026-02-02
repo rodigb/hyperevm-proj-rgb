@@ -11,7 +11,7 @@ import {
   Tooltip,
   CartesianGrid,
 } from "recharts";
-import { useHyperliquidL1Derivatives } from "@/lib/defillama/useHyperLiquidL1Derivatives";
+import { useHyperliquidL1Derivatives } from "@/lib/api/defillama/useHyperLiquidL1Derivatives";
 import ToDollarsFunction from "../utility/ToDollarsFunction";
 import Header from "./Header";
 

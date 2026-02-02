@@ -1,6 +1,6 @@
 "use client";
 
-import { useHyperliquidFees } from "@/lib/defillama/useHyperLiquidFees";
+import { useHyperliquidFees } from "@/lib/api/defillama/useHyperLiquidFees";
 import LandingGridItem from "../LandingGriditem";
 import ToDollarsFunction from "../utility/ToDollarsFunction";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";

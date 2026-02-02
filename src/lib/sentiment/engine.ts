@@ -1,5 +1,5 @@
-import { getProtocolTvlSeries } from "@/lib/defillama/marketSeries";
-import { fetchHyperliquidFundingHistory } from "@/lib/hyperliquid/fundingHistory";
+import { getProtocolTvlSeries } from "@/lib/api/defillama/marketSeries";
+import { fetchHyperliquidFundingHistory } from "@/lib/api/hyperliquid/fundingHistory";
 import type { SentimentResponse } from "@/lib/sentiment/types";
 
 type LlamaSummary = {

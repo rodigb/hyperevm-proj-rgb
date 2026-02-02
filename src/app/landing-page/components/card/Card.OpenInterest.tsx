@@ -1,10 +1,10 @@
 "use client";
 
-import { useHyperliquidFees } from "@/lib/defillama/useHyperLiquidFees";
+import { useHyperliquidFees } from "@/lib/api/defillama/useHyperLiquidFees";
 import LandingGridItem from "../LandingGriditem";
 import ToDollarsFunction from "../utility/ToDollarsFunction";
 import PaidIcon from "@mui/icons-material/CurrencyExchange";
-import { useHyperliquidOpenInterest } from "@/lib/defillama/useHyperLiquidOpenInterest";
+import { useHyperliquidOpenInterest } from "@/lib/api/defillama/useHyperLiquidOpenInterest";
 
 export default function OpenInterestCard() {
   const { totals, isLoading } = useHyperliquidOpenInterest();

@@ -3,7 +3,7 @@
 import LandingGridItem from "../LandingGriditem";
 import ToDollarsFunction from "../utility/ToDollarsFunction";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
-import { useHypeMarketCap } from "@/lib/defillama/useHypeMarketCap";
+import { useHypeMarketCap } from "@/lib/api/defillama/useHypeMarketCap";
 
 export default function MarketCapCard() {
   const { marketCap, isLoading } = useHypeMarketCap();

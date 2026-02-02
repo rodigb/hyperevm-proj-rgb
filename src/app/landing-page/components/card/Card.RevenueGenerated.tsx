@@ -3,7 +3,7 @@
 import LandingGridItem from "../LandingGriditem";
 import ToDollarsFunction from "../utility/ToDollarsFunction";
 import QueryBuilderIcon from "@mui/icons-material/CurrencyExchange";
-import { useHyperliquidRevenue } from "@/lib/defillama/useHyperLiquidRevenue";
+import { useHyperliquidRevenue } from "@/lib/api/defillama/useHyperLiquidRevenue";
 
 export default function RevenueGeneratedCard() {
   const { totals, isLoading } = useHyperliquidRevenue();
