@@ -11,6 +11,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Tooltip,
 } from "@mui/material";
 
 import GridViewIcon from "@mui/icons-material/GridView";
@@ -22,10 +23,20 @@ import AppIcon from "./AppIcon";
 export const drawerWidth = 260;
 
 const navItems = [
-  { href: "/", label: "Dashboard", icon: GridViewIcon },
-  { href: "/protocols-page", label: "Protocols", icon: CheckBoxIcon },
-  { href: "/yields", label: "Yields", icon: AutoGraphIcon },
-  { href: "/compare", label: "Compare TVL", icon: InsertChartIcon },
+  { href: "/", label: "Dashboard", icon: GridViewIcon, implemented: true },
+  {
+    href: "/protocols-page",
+    label: "Protocols",
+    icon: CheckBoxIcon,
+    implemented: false,
+  },
+  { href: "/yields", label: "Yields", icon: AutoGraphIcon, implemented: false },
+  {
+    href: "/compare",
+    label: "Compare TVL",
+    icon: InsertChartIcon,
+    implemented: false,
+  },
 ];
 
 export default function Sidebar() {
@@ -71,22 +82,37 @@ export default function Sidebar() {
                   : pathname?.startsWith(item.href);
 
               const Icon = item.icon;
+              const disabled = !item.implemented;
 
-              return (
+              const button = (
                 <ListItemButton
                   key={item.href}
-                  component={Link}
-                  href={item.href}
-                  selected={selected}
+                  component={disabled ? "div" : Link}
+                  href={disabled ? undefined : item.href}
+                  selected={!disabled && selected}
                   sx={{
                     borderRadius: 2,
                     px: 1.5,
                     py: 1.05,
-                    color: selected ? "#50d2c1" : "rgba(255,255,255,0.65)",
+
+                    color: disabled
+                      ? "rgba(255,255,255,0.25)"
+                      : selected
+                        ? "#50d2c1"
+                        : "rgba(255,255,255,0.65)",
+
+                    cursor: disabled ? "not-allowed" : "pointer",
+                    pointerEvents: disabled ? "none" : "auto",
+                    opacity: disabled ? 0.45 : 1,
+
                     transition: "all 140ms ease",
+
                     "&:hover": {
-                      bgcolor: "rgba(80,210,193,0.08)",
+                      bgcolor: disabled
+                        ? "transparent"
+                        : "rgba(80,210,193,0.08)",
                     },
+
                     "&.Mui-selected": {
                       bgcolor: "rgba(80,210,193,0.10)",
                       color: "#ffffff",
@@ -108,7 +134,7 @@ export default function Sidebar() {
                   <ListItemIcon
                     sx={{
                       minWidth: 40,
-                      color: "#50d2c1",
+                      color: disabled ? "rgba(255,255,255,0.25)" : "#50d2c1",
                       display: "flex",
                       justifyContent: "center",
                     }}
@@ -123,6 +149,18 @@ export default function Sidebar() {
                     }}
                   />
                 </ListItemButton>
+              );
+
+              return disabled ? (
+                <Tooltip
+                  key={item.href}
+                  title="Coming Soon..."
+                  placement="left"
+                >
+                  <Box>{button}</Box>
+                </Tooltip>
+              ) : (
+                button
               );
             })}
           </List>
