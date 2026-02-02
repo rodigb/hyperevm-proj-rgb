@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Typography, Box, Skeleton, Button } from "@mui/material";
+import { Box, Skeleton, Button } from "@mui/material";
 import {
   ResponsiveContainer,
   LineChart,
@@ -12,6 +12,8 @@ import {
   CartesianGrid,
 } from "recharts";
 import { useHyperliquidL1Derivatives } from "@/lib/defillama/useHyperLiquidL1Derivatives";
+import ToDollarsFunction from "../utility/ToDollarsFunction";
+import Header from "./Header";
 
 type ChartDatum = { t: string; v: number };
 
@@ -61,17 +63,8 @@ export default function Graph() {
         p: 2,
       }}
     >
-      <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
-        <Typography variant="h6">Volume</Typography>
+      <Header error={error} totals={totals} />
 
-        <Typography variant="body2" sx={{ opacity: 0.75 }}>
-          {error
-            ? "Failed to load"
-            : totals
-              ? `24h: ${formatUSD(totals.total24h)}`
-              : "Loading…"}
-        </Typography>
-      </Box>
       <Box sx={{ display: "flex", gap: 1, mb: 1 }}>
         <Button
           size="small"
@@ -117,7 +110,7 @@ export default function Graph() {
                 stroke="rgba(255,255,255,0.55)"
                 tickLine={false}
                 axisLine={false}
-                tickFormatter={(v: number) => formatUSD(v).replace("$", "")}
+                tickFormatter={(value) => formatUSD(Number(value))}
               />
               <Tooltip
                 contentStyle={{
@@ -132,7 +125,9 @@ export default function Graph() {
                 }}
                 labelStyle={{ color: "rgba(255, 255, 255, 0.8)" }}
                 labelFormatter={(label) => `Date: ${label}`}
-                formatter={(value) => formatUSD(Number(value))}
+                formatter={(value) =>
+                  ToDollarsFunction({ value: Number(value) })
+                }
               />
               <Line
                 type="monotone"

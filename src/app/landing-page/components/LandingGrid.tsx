@@ -1,28 +1,17 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import React from "react";
 import LandingGridItem from "./LandingGriditem";
 import GroupIcon from "@mui/icons-material/Group";
-import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
-import PaidIcon from "@mui/icons-material/Paid";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import Graph from "./graph/Graph";
-import { useHyperliquidL1Derivatives } from "@/lib/defillama/useHyperLiquidL1Derivatives";
-import ToDollarsFunction from "./functions/ToDollarsFunction";
 import ProtocolTable from "@/app/protocols-page/components/ProtocolTable";
 import { useHyperliquidL1Protocols } from "@/lib/defillama/useHyperliquidL1Protocols";
 import { useProtocolSparklines } from "@/lib/defillama/useProtocolSparklines";
+import FeesGeneratedCard from "./card/Card.FeesGenerated";
+import OpenInterestCard from "./card/Card.OpenInterest";
+import RevenueGeneratedCard from "./card/Card.RevenueGenerated";
 
 function LandingGrid() {
-  const TotalOpenInterest = 92392839289;
-  const TotalOpenInterestToDollar = TotalOpenInterest.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
-  const TotalActiveTraders = 19000;
-
-  const { totals, isLoading } = useHyperliquidL1Derivatives();
-
   const {
     protocols,
     isLoading: protocolsLoading,
@@ -41,68 +30,61 @@ function LandingGrid() {
   }));
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={0.5}>
       <Grid
         sx={{
           border: "3px solid #0f1c26",
           background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
         }}
-        size={3}
+        size={2}
       >
-        <LandingGridItem
-          title="24h Trading Volume"
-          value={ToDollarsFunction({
-            value: totals?.total24h ? totals.total24h : 0,
-          })}
-          isLoading={isLoading}
-          icon={<QueryBuilderIcon />}
-        />
+        <FeesGeneratedCard />
       </Grid>
       <Grid
         sx={{
           border: "3px solid #0f1c26",
           background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
         }}
-        size={3}
+        size={2}
       >
-        <LandingGridItem
-          title="Total Open Interest"
-          value={TotalOpenInterestToDollar}
-          icon={<PaidIcon />}
-        />
+        <RevenueGeneratedCard />
       </Grid>
       <Grid
         sx={{
           border: "3px solid #0f1c26",
           background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
         }}
-        size={3}
+        size={2}
+      ></Grid>
+      <Grid
+        sx={{
+          border: "3px solid #0f1c26",
+          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+        }}
+        size={2}
+      ></Grid>
+      <Grid
+        sx={{
+          border: "3px solid #0f1c26",
+          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+        }}
+        size={2}
+      ></Grid>
+      <Grid
+        sx={{
+          border: "3px solid #0f1c26",
+          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+        }}
+        size={2}
       >
-        <LandingGridItem
-          title="Total Active Traders"
-          value={TotalActiveTraders.toLocaleString()}
-          icon={<GroupIcon />}
-        />
+        <OpenInterestCard />
       </Grid>
       <Grid
         sx={{
           border: "3px solid #0f1c26",
           background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
         }}
-        size={3}
-      >
-        <LandingGridItem
-          title="Total Fees Generated"
-          value={TotalActiveTraders.toLocaleString()}
-          icon={<CurrencyExchangeIcon />}
-        />
-      </Grid>
-      <Grid
-        sx={{
-          border: "3px solid #0f1c26",
-          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
-        }}
-        size={4}
+        size={6}
       >
         <Graph />
       </Grid>
@@ -122,19 +104,6 @@ function LandingGrid() {
             limit={20}
           />
         </Box>
-      </Grid>
-      <Grid
-        sx={{
-          border: "3px solid #0f1c26",
-          background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
-        }}
-        size={2}
-      >
-        <LandingGridItem
-          title="Total Fees Generated"
-          value={TotalActiveTraders.toLocaleString()}
-          icon={<CurrencyExchangeIcon />}
-        />
       </Grid>
     </Grid>
   );
