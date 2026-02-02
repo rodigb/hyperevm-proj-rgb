@@ -5,7 +5,7 @@ import ToDollarsFunction from "../utility/ToDollarsFunction";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import { useHypePrice } from "@/lib/api/defillama/useHyperLiquidTokenPrice";
 import { useHypePriceChange } from "@/lib/api/defillama/useHypePriceChange";
-import { Box } from "@mui/material";
+import { Box, Skeleton } from "@mui/material";
 
 export default function HypeTokenPriceCard() {
   const { price, isLoading } = useHypePrice();
@@ -18,18 +18,25 @@ export default function HypeTokenPriceCard() {
       ? ""
       : ` (${changePct >= 0 ? "+" : ""}${changePct.toFixed(1)}%)`;
 
-  const value = price ? (
-    <Box component="span">
-      {ToDollarsFunction({ value: price })}
+  const changeNode =
+    changePct == null ? (
+      <Box component="span" sx={{ ml: 0.5, display: "inline-flex" }}>
+        <Skeleton variant="text" width={48} height={18} />
+      </Box>
+    ) : (
       <Box
         component="span"
         sx={{ color: changeColor, ml: 0.5, fontSize: "0.95rem" }}
       >
         {changeText}
       </Box>
+    );
+
+  const value = (
+    <Box component="span" sx={{ display: "inline-flex", alignItems: "center" }}>
+      {price ? ToDollarsFunction({ value: price }) : ""}
+      {price ? changeNode : <Skeleton width={30} variant="text" />}
     </Box>
-  ) : (
-    ""
   );
 
   return (
