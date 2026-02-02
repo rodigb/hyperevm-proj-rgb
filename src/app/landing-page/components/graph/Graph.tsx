@@ -63,9 +63,17 @@ export default function Graph() {
         p: 2,
       }}
     >
-      <Header error={error} totals={totals} />
+      <Header error={error} totals={totals} />{" "}
+      <Box
+        sx={{
+          display: "flex",
+          gap: 1,
 
-      <Box sx={{ display: "flex", gap: 1, mb: 1 }}>
+          width: "100%",
+          justifyContent: "flex-start",
+          mt: 1,
+        }}
+      >
         <Button
           size="small"
           variant={timeframe === "7d" ? "contained" : "text"}
@@ -90,7 +98,7 @@ export default function Graph() {
           30d
         </Button>
       </Box>
-      <Box sx={{ width: "100%", height: 260 }}>
+      <Box sx={{ width: "100%", height: 260, pt: 2 }}>
         {isLoading ? (
           <Skeleton variant="rounded" height={260} />
         ) : (

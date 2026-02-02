@@ -1,15 +1,17 @@
 import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import LandingGridItem from "./LandingGriditem";
-import GroupIcon from "@mui/icons-material/Group";
-import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import Graph from "./graph/Graph";
-import ProtocolTable from "@/app/protocols-page/components/ProtocolTable";
+import ProtocolTable from "@/app/landing-page/components/table/ProtocolTable";
 import { useHyperliquidL1Protocols } from "@/lib/defillama/useHyperliquidL1Protocols";
 import { useProtocolSparklines } from "@/lib/defillama/useProtocolSparklines";
 import FeesGeneratedCard from "./card/Card.FeesGenerated";
-import OpenInterestCard from "./card/Card.OpenInterest";
 import RevenueGeneratedCard from "./card/Card.RevenueGenerated";
+import HypeTokenPriceCard from "./card/Card.HypeTokenPrice";
+import MarketCapCard from "./card/Card.MarketCap";
+import FundingCard from "./card/Card.Funding";
+import AiSentimentCard from "./card/Card.AiSentiment";
+import LongShortCard from "./card/Card.LongShort";
+import LiquidationsCard from "./card/Card.Liquidations";
 
 function LandingGrid() {
   const {
@@ -40,7 +42,25 @@ function LandingGrid() {
             border: "3px solid #0f1c26",
             background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
           }}
-          size={2}
+          size={3}
+        >
+          <HypeTokenPriceCard />
+        </Grid>
+        <Grid
+          sx={{
+            border: "3px solid #0f1c26",
+            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+          }}
+          size={3}
+        >
+          <MarketCapCard />
+        </Grid>
+        <Grid
+          sx={{
+            border: "3px solid #0f1c26",
+            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+          }}
+          size={3}
         >
           <FeesGeneratedCard />
         </Grid>
@@ -49,32 +69,12 @@ function LandingGrid() {
             border: "3px solid #0f1c26",
             background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
           }}
-          size={2}
+          size={3}
         >
           <RevenueGeneratedCard />
         </Grid>
-        <Grid
-          sx={{
-            border: "3px solid #0f1c26",
-            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
-          }}
-          size={2}
-        ></Grid>
-        <Grid
-          sx={{
-            border: "3px solid #0f1c26",
-            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
-          }}
-          size={2}
-        ></Grid>
-        <Grid
-          sx={{
-            border: "3px solid #0f1c26",
-            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
-          }}
-          size={2}
-        ></Grid>
-        <Grid
+
+        {/* <Grid
           sx={{
             border: "3px solid #0f1c26",
             background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
@@ -82,13 +82,13 @@ function LandingGrid() {
           size={2}
         >
           <OpenInterestCard />
-        </Grid>
+        </Grid> */}
         <Grid
           sx={{
             border: "3px solid #0f1c26",
             background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
           }}
-          size={6}
+          size={4}
         >
           <Graph />
         </Grid>
@@ -105,9 +105,45 @@ function LandingGrid() {
               protocols={rows}
               loading={loading}
               skeletonRows={5}
-              limit={20}
+              limit={10}
             />
           </Box>
+        </Grid>
+        <Grid
+          sx={{
+            border: "3px solid #0f1c26",
+            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+          }}
+          size={2}
+        >
+          <AiSentimentCard />
+        </Grid>
+        <Grid
+          sx={{
+            border: "3px solid #0f1c26",
+            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+          }}
+          size={5}
+        >
+          <FundingCard />
+        </Grid>
+        <Grid
+          sx={{
+            border: "3px solid #0f1c26",
+            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+          }}
+          size={5}
+        >
+          <LiquidationsCard />
+        </Grid>
+        <Grid
+          sx={{
+            border: "3px solid #0f1c26",
+            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
+          }}
+          size={2}
+        >
+          <LongShortCard />
         </Grid>
       </Grid>
     </>

@@ -11,7 +11,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import Sparkline from "../charts/SparkLine";
+import Sparkline from "./SparkLine";
 
 type ProtocolRow = {
   name: string;
@@ -36,7 +36,6 @@ export default function ProtocolTable({
   skeletonRows?: number;
   limit?: number;
 }) {
-  console.log("Rendering ProtocolTable with protocols:", protocols);
   return (
     <Table stickyHeader size="small">
       <TableHead>

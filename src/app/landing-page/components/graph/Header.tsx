@@ -15,7 +15,6 @@ function Header({
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        mb: 2,
       }}
     >
       {/* Left Side */}
@@ -38,10 +37,8 @@ function Header({
         </Typography>
       </Box>
 
-      {/* Right Side KPI */}
       <Box
         sx={{
-          px: 2,
           minWidth: 150,
           textAlign: "right",
         }}

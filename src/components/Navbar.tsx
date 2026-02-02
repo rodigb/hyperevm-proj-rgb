@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import HyperEVMStatusIcon from "@/app/protocols-page/components/HyperEVMStatusIcon";
 import {
   Drawer,
   Box,
@@ -132,20 +131,6 @@ export default function Sidebar() {
         <Box sx={{ flexGrow: 1 }} />
 
         <Divider sx={{ borderColor: "rgba(255,255,255,0.08)" }} />
-
-        {/* Status */}
-        <Box sx={{ px: 2, py: 2 }}>
-          <Box
-            sx={{
-              p: 1.25,
-              borderRadius: 2,
-              bgcolor: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.06)",
-            }}
-          >
-            <HyperEVMStatusIcon />
-          </Box>
-        </Box>
       </Box>
     </Drawer>
   );
