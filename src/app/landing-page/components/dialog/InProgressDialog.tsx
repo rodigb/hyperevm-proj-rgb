@@ -99,7 +99,7 @@ export default function InProgressDialog() {
           }}
         >
           Thank you for your patience as we continue to improve the HyperBoard
-          experience.
+          experience...
         </Typography>
       </DialogContent>
 
