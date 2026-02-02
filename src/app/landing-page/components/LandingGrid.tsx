@@ -96,18 +96,16 @@ function LandingGrid() {
           sx={{
             border: "3px solid #0f1c26",
             background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
-            maxHeight: 390,
+            height: 390,
           }}
           size={6}
         >
-          <Box sx={{ overflowY: "auto", maxHeight: "100%" }}>
-            <ProtocolTable
-              protocols={rows}
-              loading={loading}
-              skeletonRows={5}
-              limit={10}
-            />
-          </Box>
+          <ProtocolTable
+            protocols={rows}
+            loading={loading}
+            skeletonRows={5}
+            limit={10}
+          />
         </Grid>
         <Grid
           sx={{
