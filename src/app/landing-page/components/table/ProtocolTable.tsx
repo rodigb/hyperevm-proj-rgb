@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import Sparkline from "./SparkLine";
-import BackupTableIcon from "@mui/icons-material/BackupTable";
+
 type ProtocolRow = {
   name: string;
   slug: string;
@@ -104,11 +104,11 @@ export default function ProtocolTable({
                       sx={{ display: "flex", alignItems: "center", gap: 1.5 }}
                     >
                       <Skeleton variant="circular" width={26} height={26} />
-                      <Skeleton variant="text" width={160} />
+                      <Skeleton variant="text" width={50} />
                     </Box>
                   </TableCell>
                   <TableCell align="right">
-                    <Skeleton variant="text" width={90} sx={{ ml: "auto" }} />
+                    <Skeleton variant="text" width={50} sx={{ ml: "auto" }} />
                   </TableCell>
                   <TableCell align="right">
                     <Skeleton variant="text" width={55} sx={{ ml: "auto" }} />

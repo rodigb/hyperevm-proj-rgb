@@ -9,7 +9,7 @@ import RevenueGeneratedCard from "./card/Card.RevenueGenerated";
 import HypeTokenPriceCard from "./card/Card.HypeTokenPrice";
 import MarketCapCard from "./card/Card.MarketCap";
 import FundingCard from "./card/Card.Funding";
-import AiSentimentCard from "./card/Card.AiSentiment";
+import SentimentCard from "./card/Card.Sentiment";
 import LongShortCard from "./card/Card.LongShort";
 import LiquidationsCard from "./card/Card.Liquidations";
 
@@ -74,15 +74,6 @@ function LandingGrid() {
           <RevenueGeneratedCard />
         </Grid>
 
-        {/* <Grid
-          sx={{
-            border: "3px solid #0f1c26",
-            background: "linear-gradient(180deg, #09121f 0%, #05080f 100%)",
-          }}
-          size={2}
-        >
-          <OpenInterestCard />
-        </Grid> */}
         <Grid
           sx={{
             border: "3px solid #0f1c26",
@@ -103,7 +94,7 @@ function LandingGrid() {
           <ProtocolTable
             protocols={rows}
             loading={loading}
-            skeletonRows={5}
+            skeletonRows={10}
             limit={10}
           />
         </Grid>
@@ -114,7 +105,7 @@ function LandingGrid() {
           }}
           size={2}
         >
-          <AiSentimentCard />
+          <SentimentCard />
         </Grid>
         <Grid
           sx={{

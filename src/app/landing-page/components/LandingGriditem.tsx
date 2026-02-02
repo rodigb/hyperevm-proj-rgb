@@ -5,11 +5,13 @@ function LandingGridItem({
   value,
   icon,
   isLoading,
+  subtitle,
 }: {
   title: string;
-  value: string | number;
+  value: React.ReactNode;
   icon?: React.ReactNode;
   isLoading?: boolean;
+  subtitle?: React.ReactNode;
 }) {
   return (
     <Box
@@ -41,6 +43,13 @@ function LandingGridItem({
       ) : (
         <Typography sx={{ fontSize: "1.5rem" }}>{value}</Typography>
       )}
+      {subtitle ? (
+        <Typography
+          sx={{ fontSize: "0.85rem", mt: 0.5, color: "rgba(244,246,255,0.7)" }}
+        >
+          {subtitle}
+        </Typography>
+      ) : null}
     </Box>
   );
 }
