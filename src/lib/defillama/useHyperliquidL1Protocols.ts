@@ -1,6 +1,7 @@
 "use client";
 
 import useSWR from "swr";
+import { llamaFetcher } from "./utils";
 
 export type DefiLlamaProtocol = {
   logo: string;
@@ -18,23 +19,11 @@ export type DefiLlamaProtocol = {
 const LLAMA_PROTOCOLS_URL = "https://api.llama.fi/protocols";
 const HL_CHAIN = "Hyperliquid L1";
 
-/* -----------------------------
-   Fetcher Function (SWR)
------------------------------- */
-const fetcher = async (url: string) => {
-  const res = await fetch(url);
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch protocols: ${res.status}`);
-  }
-
-  return res.json();
-};
  
 export function useHyperliquidL1Protocols() {
   const { data, error, isLoading, isValidating, mutate } = useSWR<
     DefiLlamaProtocol[]
-  >(LLAMA_PROTOCOLS_URL, fetcher, {
+  >(LLAMA_PROTOCOLS_URL, llamaFetcher, {
     refreshInterval: 30_000,  
     revalidateOnFocus: true,
     dedupingInterval: 10_000,

@@ -36,17 +36,16 @@ function toMMDD(tsSeconds: number) {
 }
 
 export default function Graph() {
-  const { derivatives, totals, isLoading, error } =
-    useHyperliquidL1Derivatives();
+  const { chart, totals, isLoading, error } = useHyperliquidL1Derivatives();
 
   const [timeframe, setTimeframe] = React.useState<"7d" | "30d" | "all">("30d");
 
   const chartData: ChartDatum[] = React.useMemo(() => {
-    const last = derivatives.slice(
+    const last = chart.slice(
       timeframe === "7d" ? -7 : timeframe === "30d" ? -30 : undefined,
     );
     return last.map(([ts, val]) => ({ t: toMMDD(ts), v: val }));
-  }, [derivatives, timeframe]);
+  }, [chart, timeframe]);
 
   return (
     <Box

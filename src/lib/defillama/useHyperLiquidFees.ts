@@ -1,42 +1,22 @@
 "use client";
 
 import useSWR from "swr";
+import { LlamaSummary } from "./types";
+import { llamaFetcher, defaultSWRConfig } from "./utils";
 
-export type LlamaChartPoint = [number, number];  
-
-export type HyperliquidFeesSummary = {
-  id: string;
-  name: string;
-
-  total24h: number;
-  total7d: number;
-  total30d: number;
-  totalAllTime: number;
-
-  totalDataChart: LlamaChartPoint[];
-};
+export type HyperliquidFeesSummary = LlamaSummary;
 
 const HL_FEES_URL = "https://api.llama.fi/summary/fees/hyperliquid";
-
-const fetcher = async (url: string): Promise<HyperliquidFeesSummary> => {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`Failed to fetch fees: ${res.status}`);
-  return res.json() as Promise<HyperliquidFeesSummary>;
-};
 
 export function useHyperliquidFees() {
   const { data, error, isLoading, isValidating, mutate } = useSWR<HyperliquidFeesSummary>(
     HL_FEES_URL,
-    fetcher,
-    {
-      refreshInterval: 30_000,
-      revalidateOnFocus: true,
-      dedupingInterval: 10_000,
-    }
+    llamaFetcher,
+    defaultSWRConfig
   );
 
   return {
-    feesChart: data?.totalDataChart ?? [],
+    chart: data?.totalDataChart ?? [],
     totals: data
       ? {
           total24h: data.total24h,
