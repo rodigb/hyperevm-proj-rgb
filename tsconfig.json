@@ -30,5 +30,6 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
+  "types":["@mui/types"],
   "exclude": ["node_modules"]
 }
