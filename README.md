@@ -28,7 +28,7 @@ Navigation sections include: **Dashboard**, **Protocols**, **Yields**, and **Com
 
 - **Next.js**
 - **TypeScript**
-- (Likely) API-driven data fetching for market + on-chain metrics (see code for exact providers/endpoints)
+- API-driven data fetching for market + on-chain metrics (see code for exact providers/endpoints)
 
 ---
 
