@@ -2,7 +2,7 @@
 
 A **Next.js + TypeScript** dashboard for tracking key HyperEVM / Hyperliquid ecosystem metrics—token stats, protocol TVL, and (soon) derivatives + sentiment indicators.
 
-Live demo: https://hyperevm-proj-rgb.vercel.app/ :contentReference[oaicite:0]{index=0}
+Live demo: https://hyperevm-proj-rgb.vercel.app/  
 
 ---
 
@@ -17,10 +17,10 @@ From the **Dashboard** view, the app surfaces:
 - **Hyperliquid Perps Activity** (24h volume with 7d / 30d toggles)
 - **Top 10 Hyperliquid L1 Protocols by TVL** (plus 24h/7d/1h changes and a 7-day sparkline-style view)
 - **HYPE Sentiment Score (7d)** (aggregation in progress)
-- “Coming soon” panels for **Funding Rate**, **Liquidations**, and **Long/Short Ratio** :contentReference[oaicite:1]{index=1}
+- “Coming soon” panels for **Funding Rate**, **Liquidations**, and **Long/Short Ratio** 
 - This is the base for the application. More features will be added in future.
 
-Navigation sections include: **Dashboard**, **Protocols**, **Yields**, and **Compare TVL**. :contentReference[oaicite:2]{index=2}
+Navigation sections include: **Dashboard**, **Protocols**, **Yields**, and **Compare TVL**.  
 
 ---
 
