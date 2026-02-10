@@ -6,6 +6,10 @@ Live demo: https://hyperevm-proj-rgb.vercel.app/
 
 ---
 
+## Figma designs / mockups
+
+https://www.figma.com/design/RYuYsCNftey0KrJB5qvQ8I/Hyper-Dashboard?node-id=0-1&t=wyvx3hdy3pmUshvh-1
+
 ## What it shows
 
 From the **Dashboard** view, the app surfaces:
@@ -43,3 +47,4 @@ Navigation sections include: **Dashboard**, **Protocols**, **Yields**, and **Com
 git clone <your-repo-url>
 cd <your-repo-folder>
 npm install
+
