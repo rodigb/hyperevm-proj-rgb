@@ -14,7 +14,7 @@ export default function Topbar() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar component="nav" sx={{ bgcolor: "background.paper" }}>
         <Toolbar sx={{ ml: 25, mr: 25 }}>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Image
@@ -28,20 +28,35 @@ export default function Topbar() {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", sm: "block" },
+              fontSize: "1.5rem",
+            }}
           >
-            Hyper<span style={{ color: "#25E6D5" }}>Board</span>
+            Hyper<span style={{ color: "#00FF9C" }}>Board</span>
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
               <Button key={item} sx={{ color: "#fff" }}>
-                <Typography variant="button" sx={{ fontWeight: 200 }}>
+                <Typography
+                  variant="button"
+                  sx={{ fontWeight: 200, fontSize: "1.2rem" }}
+                >
                   {item}
                 </Typography>
               </Button>
             ))}
-            <Button variant="contained" color="primary" sx={{ ml: 2 }}>
-              <Typography variant="button" sx={{ fontWeight: 200 }}>
+            <Button
+              variant="contained"
+              color="primary"
+              sx={{ ml: 2, fontSize: "1.2rem" }}
+              href="/dashboard"
+            >
+              <Typography
+                variant="button"
+                sx={{ fontWeight: 200, fontSize: "1.2rem" }}
+              >
                 Launch Dashboard
               </Typography>
             </Button>

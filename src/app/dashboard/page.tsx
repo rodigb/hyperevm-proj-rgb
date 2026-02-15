@@ -1,8 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { Box, Container, Typography } from "@mui/material";
-import LandingGrid from "./components/LandingGrid";
+import Dashboard from "./components/DashboardGrid";
 
 type Quad = {
   title: string;
@@ -34,6 +32,6 @@ const quads: Quad[] = [
   },
 ];
 
-export default function LandingPage() {
-  return <LandingGrid />;
+export default function DashboardPage() {
+  return <Dashboard />;
 }

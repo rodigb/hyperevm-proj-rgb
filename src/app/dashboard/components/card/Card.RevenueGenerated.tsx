@@ -1,6 +1,6 @@
 "use client";
 
-import LandingGridItem from "../LandingGriditem";
+import LandingGridItem from "../DashboardGridItem";
 import ToDollarsFunction from "../utility/ToDollarsFunction";
 import QueryBuilderIcon from "@mui/icons-material/CurrencyExchange";
 import { useHyperliquidRevenue } from "@/lib/api/defillama/useHyperLiquidRevenue";

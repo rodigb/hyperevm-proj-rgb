@@ -1,6 +1,6 @@
 "use client";
 
-import LandingGridItem from "../LandingGriditem";
+import LandingGridItem from "../DashboardGridItem";
 import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
 import { useSentiment } from "@/lib/sentiment/useSentiment";
 import { Box } from "@mui/material";

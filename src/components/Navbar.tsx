@@ -23,7 +23,12 @@ import AppIcon from "./AppIcon";
 export const drawerWidth = 260;
 
 const navItems = [
-  { href: "/", label: "Dashboard", icon: GridViewIcon, implemented: true },
+  {
+    href: "/dashboard",
+    label: "Dashboard",
+    icon: GridViewIcon,
+    implemented: true,
+  },
   {
     href: "/protocols-page",
     label: "Protocols",

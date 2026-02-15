@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Graph from "./graph/Graph";
-import ProtocolTable from "@/app/landing-page/components/table/ProtocolTable";
+import ProtocolTable from "@/app/dashboard/components/table/ProtocolTable";
 import { useHyperliquidL1Protocols } from "@/lib/api/defillama/useHyperliquidL1Protocols";
 import { useProtocolSparklines } from "@/lib/api/defillama/useProtocolSparklines";
 import FeesGeneratedCard from "./card/Card.FeesGenerated";
@@ -12,8 +12,9 @@ import FundingCard from "./card/Card.Funding";
 import SentimentCard from "./card/Card.Sentiment";
 import LongShortCard from "./card/Card.LongShort";
 import LiquidationsCard from "./card/Card.Liquidations";
+import Sidebar from "@/components/Navbar";
 
-function LandingGrid() {
+function Dashboard() {
   const {
     protocols,
     isLoading: protocolsLoading,
@@ -33,6 +34,8 @@ function LandingGrid() {
 
   return (
     <>
+      {/* <Sidebar /> */}
+
       <Box sx={{ mb: 2, ml: 1 }}>
         <Typography fontSize={32}>Dashboard</Typography>
       </Box>
@@ -139,4 +142,4 @@ function LandingGrid() {
   );
 }
 
-export default LandingGrid;
+export default Dashboard;

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Box } from "@mui/material";
 import Providers from "./providers";
-import Sidebar from "../components/Navbar";
-import InProgressDialog from "./landing-page/components/dialog/InProgressDialog";
+import InProgressDialog from "./dashboard/components/dialog/InProgressDialog";
 
 export const metadata: Metadata = {
   title: "HyperEVM Dashboard",
@@ -19,7 +18,13 @@ export default function RootLayout({
       <body>
         <Providers>
           <InProgressDialog />
-          <Box sx={{ display: "flex", minHeight: "100dvh" }}>
+          <Box
+            sx={{
+              display: "flex",
+              minHeight: "100dvh",
+              bgcolor: "background.default",
+            }}
+          >
             <Box
               component="main"
               sx={{

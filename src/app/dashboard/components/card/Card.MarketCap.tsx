@@ -1,6 +1,6 @@
 "use client";
 
-import LandingGridItem from "../LandingGriditem";
+import LandingGridItem from "../DashboardGridItem";
 import ToDollarsFunction from "../utility/ToDollarsFunction";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import { useHypeMarketCap } from "@/lib/api/defillama/useHypeMarketCap";

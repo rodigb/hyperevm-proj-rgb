@@ -14,27 +14,22 @@ const theme = createTheme({
     mode: "dark",
 
     background: {
-      default: "#070A12",
-      paper: "#0D1220",
+      default: "#061417",
+      paper: "#0B1F23",
     },
 
     primary: {
       main: "#25E6D5",
     },
 
-    secondary: {
-      main: "#7C5CFF",
-    },
-
     text: {
-      primary: "#F4F6FF",
-      secondary: "rgba(244,246,255,0.65)",
+      primary: "#E6FFF6",
+      secondary: "#00FF9C",
+      disabled: "#7FA3A0",
     },
 
-    divider: "rgba(255,255,255,0.08)",
+    divider: "#12343A",
   },
-
-  shape: {},
 
   typography: {
     fontFamily: [
@@ -90,6 +85,7 @@ const theme = createTheme({
         root: {
           textTransform: "none",
           minWidth: 44,
+          borderRadius: 0,
         },
 
         outlined: {
@@ -107,6 +103,14 @@ const theme = createTheme({
           fontWeight: 300,
           "&:hover": {
             backgroundColor: "#00E187",
+          },
+        },
+        containedSecondary: {
+          backgroundColor: "#E6FFF6",
+          color: "#041012",
+          fontWeight: 300,
+          "&:hover": {
+            backgroundColor: "#d7efe6",
           },
         },
       },
