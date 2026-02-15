@@ -90,10 +90,24 @@ const theme = createTheme({
         root: {
           textTransform: "none",
           minWidth: 44,
-          bgcolor: "transparent",
-          border: "1px solid rgba(255,255,255,0.10)",
-          color: "white",
-          "&:hover": { bgcolor: "rgba(80,210,193,0.22)" },
+        },
+
+        outlined: {
+          border: "1px solid rgba(255,255,255,0.12)",
+          color: "#F4F6FF",
+          "&:hover": {
+            backgroundColor: "rgba(255,255,255,0.06)",
+            borderColor: "rgba(255,255,255,0.2)",
+          },
+        },
+
+        containedPrimary: {
+          backgroundColor: "#00FF9C",
+          color: "#041012",
+          fontWeight: 300,
+          "&:hover": {
+            backgroundColor: "#00E187",
+          },
         },
       },
     },

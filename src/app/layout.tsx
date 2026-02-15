@@ -20,7 +20,6 @@ export default function RootLayout({
         <Providers>
           <InProgressDialog />
           <Box sx={{ display: "flex", minHeight: "100dvh" }}>
-            <Sidebar />
             <Box
               component="main"
               sx={{
