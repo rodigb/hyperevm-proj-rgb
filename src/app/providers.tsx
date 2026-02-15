@@ -14,7 +14,21 @@ const theme = createTheme({
     mode: "dark",
 
     background: {
-      default: "#061417",
+      default: `
+      radial-gradient(
+        900px circle at 50% 30%,
+        rgba(0,255,156,0.06),
+        transparent 60%
+      ),
+      repeating-linear-gradient(
+        0deg,
+        rgba(230,255,246,0.05) 0px,
+        #061417 1px,
+        transparent 5px,
+        transparent 6px
+      ),
+      #061417
+    `,
       paper: "#0B1F23",
     },
 
@@ -64,7 +78,7 @@ const theme = createTheme({
         body: {
           margin: 0,
           minHeight: "100vh",
-          backgroundColor: "rgb(0, 0, 0)",
+          backgroundColor: "#061417",
           backgroundImage:
             "repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0px, rgb(0, 0, 0) 1px, transparent 5px, transparent 5px)",
         },
